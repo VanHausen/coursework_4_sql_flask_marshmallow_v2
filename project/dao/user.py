@@ -16,7 +16,7 @@ class UserDAO:
     def get_all(self):
         return self._db_session.query(User).all()
 
-    def create(self, user_d):
+    def create(self, user_d: dict):
         ent = User(**user_d)
         self._db_session.add(ent)
         self._db_session.commit()
