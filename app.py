@@ -26,7 +26,7 @@ def register_extensions(app):
     api.add_namespace(users_ns)
     api.add_namespace(auth_ns)
 
-app = create_app(DevelopmentConfig())
+app = create_app(DevelopmentConfig)
 
 
 @app.shell_context_processor

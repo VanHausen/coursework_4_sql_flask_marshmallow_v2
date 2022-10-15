@@ -6,7 +6,7 @@ from project.tools.security import generate_password_digest
 
 
 class UsersService(BaseService):
-    def get_item_by_id(self, pk):
+    def get_item_by_id(self, pk: int):
         user = UserDAO(self._db_session).get_by_id(pk)
         if not user:
             raise ItemNotFound
@@ -27,7 +27,7 @@ class UsersService(BaseService):
         if user_password:
             user_d["password"] = generate_password_digest(user_password)
         user = UserDAO(self._db_session).create(user_d)
-        return UserSchema(many=True).dump(user)
+        return UserSchema().dump(user)
 
     def update(self, new_pd):
         user = UserDAO(self._db_session).update(new_pd)

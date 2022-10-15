@@ -44,6 +44,7 @@ def check_token(func):
 # проверка права администратора, на изменение
 def admin_required(func):
     def wrapper(*args, **kwargs):
+        global role
         if 'Authorization' not in request.headers:
             abort(401)
         data = request.headers['Authorization']
