@@ -37,6 +37,6 @@ class UsersService(BaseService):
     def update_password(self, new_pd):
         user_password_1 = new_pd.get("password_1")
         user_password_2 = new_pd.get("password_2")
-
+        return UserSchema().dump(user_password_1 or user_password_2)
 
 
