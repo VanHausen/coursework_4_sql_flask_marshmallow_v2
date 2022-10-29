@@ -6,7 +6,7 @@ from project.server.server import create_app
 from project.setup_db import db
 from project.utils import read_json
 
-app = create_app()
+app = create_app(DevelopmentConfig)
 
 data = read_json("fixtures.json")
 

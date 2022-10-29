@@ -1,6 +1,9 @@
 from flask_restx import abort, Namespace, Resource
 from flask import request
+from requests import api
 
+from project.dao import user
+from project.services import users_service
 from project.tools.security import login_user, refresh_user_token
 from project.exceptions import ItemNotFound
 from project.services.users_service import UsersService
@@ -45,5 +48,20 @@ class AuthRegView(Resource):
             abort(400, "не корректный запрос")
         return UsersService(db.session).create(req_json)
 
-
+# @api.route('/register/')
+# class RegisterView(Resource):
+#     @api.marshal_with(user, as_list=True, code=200, description='OK')
+#     def post(self):
+#         data = request.json
+#         if data.get('email') and data.get('password'):
+#             return users_service.create(data.get('email'), data.get('password')), 201
+#         else:
+#             return "Чего-то не хватает", 401
+#     @api.response
+#     def put(self):
+#         data = request.json
+#         if data.get('access_token') and data.get('refresh_token'):
+#             return users_service.update(data.get('access_token'), data.get('refresh_token')), 201
+#         else:
+#             return "Чего-то не хватает", 401
 

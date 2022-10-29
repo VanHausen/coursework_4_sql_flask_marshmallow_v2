@@ -40,31 +40,28 @@ class UsersService(BaseService):
         return UserSchema().dump(user)
 
 
-    # def update_password(self, new_pd):
-    #     user_password_1 = new_pd.get("password_1")
-    #     user_password_2 = new_pd.get("password_2")
-    #     return UserSchema().dump(user_password_1 or user_password_2)
-
-    def update_password(self, email, old_password, new_password):
-        user = self.dao.UserDAO(self._db_session).get_by_email(email)
-        password_hash = user.password
-
-        if get_password_hash(password_hash=password_hash, password=old_password):
-            new_password_hash = get_password_hash(new_password)
-            user.password = new_password_hash
-            self.dao.UserDAO(self._db_session).update(user)
-            return UserSchema().dump(user)
-        else:
-            return None
+    def update_password(self, new_pd):
+        user_password_1 = new_pd.get("password_1")
+        user_password_2 = new_pd.get("password_2")
+        return UserSchema().dump(user_password_1 or user_password_2)
 
     # def update_password(self, email, old_password, new_password):
-    #     user = self.dao.get_by_email(email)
+    #     user = self.dao.UserDAO(self._db_session).get_by_email(email)
     #     password_hash = user.password
     #
-    #     if compose_passwords(password_hash=password_hash, password=old_password):
-    #         new_password_hash = generate_password_hash(new_password)
+    #     if get_password_hash(password_hash=password_hash, password=old_password):
+    #         new_password_hash = get_password_hash(new_password)
     #         user.password = new_password_hash
-    #         self.dao.update(user)
-    #         return self.dao
+    #         self.dao.UserDAO(self._db_session).update(user)
+    #         return UserSchema().dump(user)
     #     else:
     #         return None
+    #
+
+        # if compose_passwords(password_hash=password_hash, password=old_password):
+        #     new_password_hash = generate_password_hash(new_password)
+        #     user.password = new_password_hash
+        #     self.dao.update(user)
+        #     return self.dao
+        # else:
+        #     return None
