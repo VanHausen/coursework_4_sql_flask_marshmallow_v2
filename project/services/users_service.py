@@ -2,6 +2,7 @@ from sqlalchemy.orm import scoped_session
 
 from project.dao import UserDAO
 from project.exceptions import ItemNotFound
+from project.schemas import user
 from project.schemas.user import UserSchema
 from project.services.base import BaseService
 from project.tools.security import generate_password_digest, get_password_hash
@@ -43,7 +44,7 @@ class UsersService(BaseService):
     def update_password(self, new_pd):
         user_password_1 = new_pd.get("password_1")
         user_password_2 = new_pd.get("password_2")
-        return UserSchema().dump(user_password_1 or user_password_2)
+        return UserSchema().dump(user)
 
     # def update_password(self, email, old_password, new_password):
     #     user = self.dao.UserDAO(self._db_session).get_by_email(email)
