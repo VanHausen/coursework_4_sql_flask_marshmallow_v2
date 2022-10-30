@@ -2,9 +2,9 @@ from marshmallow import fields, Schema
 
 
 class UserSchema(Schema):
-    id = fields.Int(required=True, example=1)
-    email = fields.Str(required=True, example='fields@gmail.com')
-    password = fields.Str(required=True, example='1f2344vvcv')
-    name = fields.Str()
-    surname = fields.Str()
-    favorite_genre = fields.Str()
+    id = fields.Int(required=True)
+    email = fields.Str(required=True)
+    password = fields.Str(required=True, load_only=True)
+    name = fields.Str(required=True)
+    surname = fields.Str(required=True)
+    favorite_genre = fields.Str(required=True)
