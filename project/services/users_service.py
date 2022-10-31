@@ -32,7 +32,7 @@ class UsersService(BaseService):
     def create(self, user_d):
         user_password = user_d.get("password")
         if user_password:
-            user_d["password"] = generate_password_digest(user_password)
+            user_d["password"] = get_password_hash(user_password)
         user = UserDAO(self._db_session).create(user_d)
         return UserSchema().dump(user)
 
