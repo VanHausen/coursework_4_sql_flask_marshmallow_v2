@@ -76,7 +76,7 @@ def login_user(reg_json, user):
     user_password = reg_json.get("password")
     if user_email and user_password:
         password_hashed = user["password"]
-        reg_json["role"] = user["role"]
+        #reg_json["role"] = user["role"]
         reg_json["id"] = user["id"]
         if compare_password(password_hashed, user_password):
             return generate_token(reg_json)
